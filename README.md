@@ -21,35 +21,35 @@ The primary purpose of this package is to evaluate the traversability of terrain
 
 ### Clone the Repository:
 
-\`\`\`
-git clone https://github.com/your_username/grid_map.git
+```
+git clone https://github.com/garciaflorentin/Grid_map.git
 cd grid_map
-\`\`\`
+```
 
 ### Install Dependencies:
 Use the provided script to install dependencies:
 
-\`\`\`
+```
 ./install_dependencies.sh
-\`\`\`
+```
 
 ### Build the Package:
 Ensure you are in the root of your workspace and then build the package using colcon:
 
-\`\`\`
-colcon build
-\`\`\`
+```
+colcon build --symlink-install
+```
 
 ### Source the Setup File:
 After building, source the setup file to overlay this workspace on your environment:
 
-\`\`\`
+```
 source install/setup.bash
-\`\`\`
+```
 
 ## install_dependencies.sh
 
-\`\`\`
+```
 #!/bin/bash
 
 sudo apt update
@@ -78,7 +78,7 @@ sudo apt install -y \\
   python3-pip
 
 pip3 install --user colcon-common-extensions
-\`\`\`
+```
 
 ## Usage
 
@@ -86,9 +86,9 @@ pip3 install --user colcon-common-extensions
 
 To run the filter demo, which processes a grid map to extract various geometric features of the ground, use the following command:
 
-\`\`\`
+```
 ros2 launch grid_map_demos filters_demo_launch.py
-\`\`\`
+```
 
 This launch file will start the filtering process and open RViz2 to visualize the results.
 
@@ -103,9 +103,9 @@ Here is a step-by-step guide to using the grid map package:
 
 1. **Launch the Filter Demo**:
 
-    \`\`\`
+```
     ros2 launch grid_map_demos filters_demo_launch.py
-    \`\`\`
+```
 
 2. **Provide Grid Map Data**:
    Ensure that the appropriate grid map data is being published to the expected topics.
@@ -139,7 +139,7 @@ The configuration files are located in the \`config\` directory of \`grid_map_de
 
 #### Filter Chain Configuration
 
-\`\`\`
+```
 filters_demo_filter_chain.yaml:
   filter_chain:
     - name: "lower_threshold"
@@ -166,4 +166,4 @@ filters_demo_filter_chain.yaml:
       params:
         input_layers_prefix: "normal_"
         output_layer: "normal_color"
-\`\`\`
+```
