@@ -1,0 +1,36 @@
+image_to_gridmap:
+  ros__parameters:
+    image_topic: "/image"
+    resolution: 0.02
+    map_frame_id: "map"
+    min_height: -0.5
+    max_height: 1.0
+
+grid_map_visualization:
+  ros__parameters:
+    grid_map_topic: /filtered_map
+    grid_map_visualizations: [surface_normals,elevation_points,map_region,traversability_grid] 
+    surface_normals:
+      type: vectors
+      params:
+        layer_prefix: normal_vectors_
+        position_layer: elevation
+        scale: 0.06
+        line_width: 0.005
+        color: 15600153 # red
+    elevation_points:
+      type: point_cloud
+      params:
+        layer: elevation
+    map_region:
+      type: map_region
+      params:
+        color: 3289650
+        line_width: 0.1
+    traversability_grid:
+      type: occupancy_grid
+      params:
+        layer: slope
+        data_min: 0.0
+        data_max: 0.52 #envrion 30°
+
