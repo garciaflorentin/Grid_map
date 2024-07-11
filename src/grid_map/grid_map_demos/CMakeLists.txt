@@ -76,33 +76,24 @@ add_executable(
   src/tf_static_publisher.cpp
 )
 
-
 ###########################
 
-add_executable(occupancy_grid_fusion src/OccupancyGridFusion.cpp)
+add_executable(
+  filters_demo
+  src/filters_demo_node.cpp
+)
 
-add_executable(occupancy_grid_concat_node src/occupancy_grid_concat_node.cpp)
+add_library(filters_demo_lib SHARED
+  src/FiltersDemo.cpp
+)
 
-add_executable(occupancy_grid_value_node src/occupancy_grid_value_node.cpp)
 
 target_link_libraries(filters_demo CURL::libcurl)
 
 
+
 ## Specify libraries to link a library or executable target against
 
-ament_target_dependencies(
-  occupancy_grid_value_node SYSTEM
-  ${dependencies}
-)
-
-ament_target_dependencies(
-  occupancy_grid_fusion SYSTEM
-  ${dependencies}
-)
-
-ament_target_dependencies(occupancy_grid_concat_node SYSTEM
-${dependencies}
-)
 
 ament_target_dependencies(
   transform_publisher_node SYSTEM
@@ -129,17 +120,12 @@ ament_target_dependencies(
 )
 
 
-
-
-
 set(targets_list
   filters_demo
   filters_demo_lib
   transform_publisher_node
   tf_static_publisher
-  occupancy_grid_fusion
-  occupancy_grid_concat_node
-  occupancy_grid_value_node
+
 )
 
 
