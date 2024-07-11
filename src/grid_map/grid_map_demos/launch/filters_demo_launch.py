@@ -93,12 +93,6 @@ def generate_launch_description():
         output='screen',
     )
 
-    # costmap_fusion = Node(
-    #     package='grid_map_demos',
-    #     executable='occupancy_grid_fusion',
-    #     name='occupancy_grid_fusion',
-    #     output='screen',
-    # )
 
     costmap_concat = Node(
         package='grid_map_demos',

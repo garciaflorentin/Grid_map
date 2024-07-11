@@ -87,13 +87,19 @@ add_library(filters_demo_lib SHARED
   src/FiltersDemo.cpp
 )
 
+add_executable(
+  occupancy_grid_concat_node
+  src/occupancy_grid_concat_node.cpp
+)
+
+add_executable(
+  occupancy_grid_value_node
+  src/occupancy_grid_value_node.cpp
+)
 
 target_link_libraries(filters_demo CURL::libcurl)
 
-
-
 ## Specify libraries to link a library or executable target against
-
 
 ament_target_dependencies(
   transform_publisher_node SYSTEM
@@ -102,6 +108,16 @@ ament_target_dependencies(
 
 ament_target_dependencies(
   tf_static_publisher SYSTEM
+  ${dependencies}
+)
+
+ament_target_dependencies(
+  occupancy_grid_concat_node SYSTEM
+  ${dependencies}
+)
+
+ament_target_dependencies(
+  occupancy_grid_value_node SYSTEM
   ${dependencies}
 )
 
@@ -119,15 +135,14 @@ ament_target_dependencies(
   filters
 )
 
-
 set(targets_list
   filters_demo
   filters_demo_lib
   transform_publisher_node
   tf_static_publisher
-
+  occupancy_grid_concat_node
+  occupancy_grid_value_node
 )
-
 
 foreach(target ${targets_list})
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
@@ -135,9 +150,6 @@ foreach(target ${targets_list})
     target_compile_options(${target} PRIVATE "SHELL:--param ggc-min-heapsize=32768")
   endif()
 endforeach()
-
-
-
 
 #############
 ## Install ##
@@ -153,7 +165,7 @@ install(
 
 # Mark other files for installation
 install(
-  DIRECTORY config data doc launch rviz
+  DIRECTORY config launch rviz
   DESTINATION share/${PROJECT_NAME}
 )
 

@@ -1,11 +1,3 @@
-image_to_gridmap:
-  ros__parameters:
-    image_topic: "/image"
-    resolution: 0.02
-    map_frame_id: "map"
-    min_height: -0.5
-    max_height: 1.0
-
 grid_map_visualization:
   ros__parameters:
     grid_map_topic: /filtered_map

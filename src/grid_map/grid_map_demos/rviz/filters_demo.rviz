@@ -78,7 +78,7 @@ Visualization Manager:
       Color: 200; 200; 200
       Color Layer: elevation_inpainted
       Color Transformer: GridMapLayer
-      Enabled: true
+      Enabled: false
       Height Layer: elevation_inpainted
       Height Transformer: GridMapLayer
       History Length: 1
@@ -130,7 +130,7 @@ Visualization Manager:
       Color: 200; 200; 200
       Color Layer: slope
       Color Transformer: GridMapLayer
-      Enabled: true
+      Enabled: false
       Height Layer: slope
       Height Transformer: GridMapLayer
       History Length: 1
@@ -188,7 +188,7 @@ Visualization Manager:
       Class: rviz_default_plugins/Map
       Color Scheme: costmap
       Draw Behind: false
-      Enabled: true
+      Enabled: false
       Name: traversability_grid
       Topic:
         Depth: 5
