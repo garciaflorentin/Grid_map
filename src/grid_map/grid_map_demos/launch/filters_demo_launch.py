@@ -63,21 +63,6 @@ def generate_launch_description():
         arguments=['-d', rviz_config_file]
     )
 
-    ignition_ros2_bridge_tf = Node(
-        package='ros_ign_bridge',
-        executable='parameter_bridge',
-        name='parameter_bridge',
-        arguments=['/model/robot/tf@tf2_msgs/msg/TFMessage@ignition.msgs.Pose_V',
-                   '/lidar/points@sensor_msgs/msg/PointCloud2@ignition.msgs.PointCloudPacked',
-                   '/model/robot/pose@geometry_msgs/msg/TransformStamped@ignition.msgs.Pose',
-                   '/image_raw@sensor_msgs/msg/Image@ignition.msgs.Image',
-                   '/camera_info@sensor_msgs/msg/CameraInfo@ignition.msgs.CameraInfo'
-                ],
-        remappings=[
-                ('/camera_info', '/image_raw/camera_info'),
-                ('/image_raw', '/image_raw/image_raw'),
-            ]
-    )
 
     tf_node = Node(
         package='grid_map_demos',
@@ -94,19 +79,6 @@ def generate_launch_description():
     )
 
 
-    costmap_concat = Node(
-        package='grid_map_demos',
-        executable='occupancy_grid_concat_node',
-        name='occupancy_grid_concat_node',
-        output='screen',
-    )
-
-    map_value  = Node(
-        package='grid_map_demos',
-        executable='occupancy_grid_value_node',
-        name='occupancy_grid_value_node',
-        output='screen',
-    )
 
 
     # Create the launch description and populate
@@ -142,11 +114,9 @@ def generate_launch_description():
     ld.add_action(grid_map_filter_demo_node)
     ld.add_action(grid_map_visualization_node)
     ld.add_action(rviz2_node)
-    ld.add_action(ignition_ros2_bridge_tf)
     ld.add_action(tf_node)
     ld.add_action(tf_static_node)
-    ld.add_action(map_value)
-    ld.add_action(costmap_concat)
+  
 
 
 
