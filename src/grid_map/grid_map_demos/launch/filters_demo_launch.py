@@ -16,7 +16,7 @@ def generate_launch_description():
     # Declare launch configuration variables that can access the launch arguments values
     filters_config_file = LaunchConfiguration('filters_config')
     visualization_config_file = LaunchConfiguration('visualization_config')
-    rviz_config_file = LaunchConfiguration('rviz_config')
+    # rviz_config_file = LaunchConfiguration('rviz_config')
 
 
     # Declare launch arguments
@@ -32,11 +32,11 @@ def generate_launch_description():
             grid_map_demos_dir, 'config', 'filters_demo.yaml'),
         description='Full path to the Gridmap visualization config file to use')
 
-    declare_rviz_config_file_cmd = DeclareLaunchArgument(
-        'rviz_config',
-        default_value=os.path.join(
-            grid_map_demos_dir, 'rviz', 'filters_demo.rviz'),
-        description='Full path to the RVIZ config file to use')
+    # declare_rviz_config_file_cmd = DeclareLaunchArgument(
+    #     'rviz_config',
+    #     default_value=os.path.join(
+    #         grid_map_demos_dir, 'rviz', 'filters_demo.rviz'),
+    #     description='Full path to the RVIZ config file to use')
 
     # Declare node actions
     grid_map_filter_demo_node = Node(
@@ -55,13 +55,13 @@ def generate_launch_description():
         parameters=[visualization_config_file]
     )
 
-    rviz2_node = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', rviz_config_file]
-    )
+    # rviz2_node = Node(
+    #     package='rviz2',
+    #     executable='rviz2',
+    #     name='rviz2',
+    #     output='screen',
+    #     arguments=['-d', rviz_config_file]
+    # )
 
 
     tf_node = Node(
@@ -108,12 +108,12 @@ def generate_launch_description():
     # Add launch arguments to the launch description
     ld.add_action(declare_filters_config_file_cmd)
     ld.add_action(declare_visualization_config_file_cmd)
-    ld.add_action(declare_rviz_config_file_cmd)
+    # ld.add_action(declare_rviz_config_file_cmd)
 
     # Add node actions to the launch description
     ld.add_action(grid_map_filter_demo_node)
     ld.add_action(grid_map_visualization_node)
-    ld.add_action(rviz2_node)
+    # ld.add_action(rviz2_node)
     ld.add_action(tf_node)
     ld.add_action(tf_static_node)
   
